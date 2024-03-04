@@ -23,14 +23,12 @@ done = False
 clock = pygame.time.Clock()
 
 def scatter():
-    for i in range(4):
-        newObject = Obstacle(random.randint(1, 500), random.randint(1, 500))
+    while len(obstacle_list)!=6:
+        newObject = Obstacle(random.randint(32, 470), random.randint(32, 470))
         obstacle_list.add(newObject)
 
 
-def deathanim():
-    for obs in obstacle_list:
-        obs.kill()
+
 
 while not done:
     for event in pygame.event.get():
@@ -40,7 +38,7 @@ while not done:
     if len(obstacle_list) == 0:
         scatter()
 
-    collisionlist = pygame.sprite.spritecollide(player, obstacle_list, False )
+    collisionlist = pygame.sprite.spritecollide(player, obstacle_list, False)
 
 
 
@@ -50,33 +48,32 @@ while not done:
 
     keys = pygame.key.get_pressed()
 
-    ###HORIZONTAL POS
-
     if keys[K_a] or keys[K_LEFT]:
         player.setvelocityx(-2)
     elif keys[K_d] or keys[K_RIGHT]:
         player.setvelocityx(2)
     else:
         player.setvelocityx(0)
-
-    ######## JUMP
-
     if keys[K_SPACE]:
         player.jump()
 
+
     for playerobject in player_list:
         playerobject.updateposition()
-        print(playerobject.getpos())
 
-    if len(player_list) == 0:
-        deathanim()
-        done = True
+    for obs in obstacle_list:
+        obs.updateframe()
 
+    ########### do kill
+
+    if len(collisionlist)>0:
+        for playerobject in player_list:
+            player_list.remove(playerobject)
+            done = True
 
 
     clock.tick(60)
     pygame.display.flip()
-
 
 
 
