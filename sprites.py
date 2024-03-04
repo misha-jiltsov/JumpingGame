@@ -1,6 +1,7 @@
 import pygame.sprite
 from os import listdir
 from os.path import isfile, join
+import math
 
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
@@ -74,4 +75,18 @@ class Obstacle(pygame.sprite.Sprite):
             else:
                 self.curimage += 1
             self.image = pygame.image.load(join(r"sprite_files\obstacle", self.images[self.curimage])).convert()
+
+    def updateposandvec(self):
+        self.rect.x += self.velocity[0]
+        self.rect.y +=self.velocity[1]
+
+        if self.rect.x>485 or self.rect.x<15:
+            self.velocity[0]*=(-1)
+        if self.rect.y > 485 or self.rect.y < 15:
+            self.velocity[1] *= (-1)
+
+
+    def updateself(self):
+        self.updateframe()
+        self.updateposandvec()
 

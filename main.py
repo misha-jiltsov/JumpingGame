@@ -24,7 +24,10 @@ clock = pygame.time.Clock()
 
 def scatter():
     while len(obstacle_list)!=6:
-        newObject = Obstacle(random.randint(32, 470), random.randint(32, 470))
+
+        randomvel = random.choice()
+
+        newObject = Obstacle(random.randint(32, 470), random.randint(32, 470), (random.randint(-100, 100)/100+0.03), (random.randint(-100, 100)/100+0.03))
         obstacle_list.add(newObject)
 
 
@@ -62,7 +65,7 @@ while not done:
         playerobject.updateposition()
 
     for obs in obstacle_list:
-        obs.updateframe()
+        obs.updateself()
 
     ########### do kill
 
