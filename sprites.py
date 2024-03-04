@@ -9,6 +9,7 @@ RED = (255, 0, 0)
 ACCELERATION = 9.81
 
 
+
 class Player(pygame.sprite.Sprite):
     def __init__(self, posx, posy):
         self.cooldown = 0
