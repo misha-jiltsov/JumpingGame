@@ -5,6 +5,8 @@ from pygame import K_LEFT, K_RIGHT, K_SPACE, K_a, K_d
 from sprites import Player, Obstacle
 import random
 
+name = input("Enter your name")
+
 BACKGROUND_BLUE = (20, 89, 199)
 
 pygame.init()
@@ -18,6 +20,8 @@ obstacle_list = pygame.sprite.Group()
 
 player = Player(200, 200)
 player_list.add(player)
+
+
 
 def join(a, b):
     return str(a)+str(b)
@@ -88,6 +92,9 @@ while not done:
     clock.tick(60)
     pygame.display.flip()
 
+
+with open("all_scores.csv", "a") as file:
+    file.write(f"{timedisplay},{name}")
 
 
 
