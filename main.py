@@ -24,15 +24,16 @@ done = False
 clock = pygame.time.Clock()
 
 def scatter():
-    while len(obstacle_list)!=6:
+    while len(obstacle_list)!=9:
 
-        randomvel = random.choice()
+        randomvel1 = random.choice([(random.randint(75, 100)/100+0.03), (random.randint(-100, -75)/100-0.03)])
+        randomvel2 = random.choice([(random.randint(75, 100) / 100 + 0.03), (random.randint(-100, -75) / 100 - 0.03)])
 
-        newObject = Obstacle(random.randint(32, 470), random.randint(32, 470), (random.randint(-100, 100)/100+0.03), (random.randint(-100, 100)/100+0.03))
+        randomposx = random.choice([random.randint(300, 400), random.randint(20, 100)])
+        randomposy = random.choice([random.randint(300, 400), random.randint(20, 100)])
+
+        newObject = Obstacle(randomposx, randomposy, randomvel1, randomvel2)
         obstacle_list.add(newObject)
-
-
-
 
 while not done:
     for event in pygame.event.get():
